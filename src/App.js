@@ -43,11 +43,11 @@ function App() {
     <div className="app">
       <Router>
         <div className="toolbar">
-          <Link to="/grid">Grid </Link>
+          <Link to="/">Grid </Link>
 
           <Link to="/table">Table </Link>
         </div>
-        <Route path="/grid" exact>
+        <Route path="/" exact>
           <CountryDetails key={uuid()} countryData={countryData} />
         </Route>
         <Route path="/table" exact>

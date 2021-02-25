@@ -1,16 +1,21 @@
 import React, { useMemo } from "react";
-import { useTable } from "react-table";
+import { useTable, useSortBy } from "react-table";
 import { COLUMNS } from "./utils";
 import "./TableComp.css";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import ExpandLessSharpIcon from "@material-ui/icons/ExpandLessSharp";
 
 const TableComp = ({ countryData }) => {
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => countryData, []);
 
-  const tableInstance = useTable({
-    columns: columns,
-    data: data,
-  });
+  const tableInstance = useTable(
+    {
+      columns: columns,
+      data: data,
+    },
+    useSortBy
+  );
   const {
     getTableProps,
     getTableBodyProps,
@@ -25,7 +30,12 @@ const TableComp = ({ countryData }) => {
         {headerGroups.map((headerGroup) => (
           <tr {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map((header) => (
-              <th {...header.getHeaderProps()}>{header.render("Header")}</th>
+              <th {...header.getHeaderProps(header.getSortByToggleProps())}>
+                {header.render("Header")}
+                <span>
+                  {header.isSorted ? (header.isSortedDesc ? " 🢃 " : " 🡹 ") : ""}
+                </span>
+              </th>
             ))}
           </tr>
         ))}
