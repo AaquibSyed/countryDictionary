@@ -1,9 +1,8 @@
 import React, { useMemo } from "react";
-import { useTable, useSortBy } from "react-table";
+import { useTable, useSortBy, useGlobalFilter } from "react-table";
 import { COLUMNS } from "./utils";
 import "./TableComp.css";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import ExpandLessSharpIcon from "@material-ui/icons/ExpandLessSharp";
+import FilterComponent from "./FilterComponent";
 
 const TableComp = ({ countryData }) => {
   const columns = useMemo(() => COLUMNS, []);
@@ -14,6 +13,7 @@ const TableComp = ({ countryData }) => {
       columns: columns,
       data: data,
     },
+    useGlobalFilter,
     useSortBy
   );
   const {
@@ -22,37 +22,47 @@ const TableComp = ({ countryData }) => {
     headerGroups,
     rows,
     prepareRow,
+    state,
+    setGlobalFilter,
   } = tableInstance;
 
+  const { filter } = state;
   return (
-    <table {...getTableProps()}>
-      <thead>
-        {headerGroups.map((headerGroup) => (
-          <tr {...headerGroup.getHeaderGroupProps()}>
-            {headerGroup.headers.map((header) => (
-              <th {...header.getHeaderProps(header.getSortByToggleProps())}>
-                {header.render("Header")}
-                <span>
-                  {header.isSorted ? (header.isSortedDesc ? " 🢃 " : " 🡹 ") : ""}
-                </span>
-              </th>
-            ))}
-          </tr>
-        ))}
-      </thead>
-      <tbody {...getTableBodyProps()}>
-        {rows.map((row) => {
-          prepareRow(row);
-          return (
-            <tr {...row.getRowProps()}>
-              {row.cells.map((cell) => (
-                <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+    <>
+      <FilterComponent filter={filter} setFilter={setGlobalFilter} />
+      <table {...getTableProps()}>
+        <thead>
+          {headerGroups.map((headerGroup) => (
+            <tr {...headerGroup.getHeaderGroupProps()}>
+              {headerGroup.headers.map((header) => (
+                <th {...header.getHeaderProps(header.getSortByToggleProps())}>
+                  {header.render("Header")}
+                  <span>
+                    {header.isSorted
+                      ? header.isSortedDesc
+                        ? " 🢃 "
+                        : " 🡹 "
+                      : ""}
+                  </span>
+                </th>
               ))}
             </tr>
-          );
-        })}
-      </tbody>
-    </table>
+          ))}
+        </thead>
+        <tbody {...getTableBodyProps()}>
+          {rows.map((row) => {
+            prepareRow(row);
+            return (
+              <tr {...row.getRowProps()}>
+                {row.cells.map((cell) => (
+                  <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                ))}
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </>
   );
 };
 export default TableComp;
