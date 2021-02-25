@@ -6,7 +6,6 @@ import React, { useEffect, useMemo, useState } from "react";
 import uuid from "react-uuid";
 import { Link, BrowserRouter as Router, Route } from "react-router-dom";
 import TableComp from "./TableComp";
-import Button from "@material-ui/core/Button";
 
 function App() {
   const [countryData, setCountryData] = useState([]);
@@ -44,22 +43,9 @@ function App() {
     <div className="app">
       <Router>
         <div className="toolbar">
-          <Button
-            variant="contained"
-            size="small"
-            color="primary"
-            href="#contained-buttons"
-          >
-            <Link to="/grid">Grid </Link>
-          </Button>
-          <Button
-            variant="contained"
-            size="small"
-            color="primary"
-            href="#contained-buttons"
-          >
-            <Link to="/table">Table </Link>
-          </Button>
+          <Link to="/grid">Grid </Link>
+
+          <Link to="/table">Table </Link>
         </div>
         <Route path="/grid" exact>
           <CountryDetails key={uuid()} countryData={countryData} />
