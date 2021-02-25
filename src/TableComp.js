@@ -1,5 +1,10 @@
 import React, { useMemo } from "react";
-import { useTable, useSortBy, useGlobalFilter } from "react-table";
+import {
+  useTable,
+  useSortBy,
+  useGlobalFilter,
+  usePagination,
+} from "react-table";
 import { COLUMNS } from "./utils";
 import "./TableComp.css";
 import FilterComponent from "./FilterComponent";
@@ -14,19 +19,25 @@ const TableComp = ({ countryData }) => {
       data: data,
     },
     useGlobalFilter,
-    useSortBy
+    useSortBy,
+    usePagination
   );
   const {
     getTableProps,
     getTableBodyProps,
     headerGroups,
-    rows,
+    page,
     prepareRow,
+    nextPage,
+    previousPage,
+    canNextPage,
+    canPreviousPage,
+    pageOptions,
     state,
     setGlobalFilter,
   } = tableInstance;
 
-  const { filter } = state;
+  const { filter, pageIndex } = state;
   return (
     <>
       <FilterComponent filter={filter} setFilter={setGlobalFilter} />
@@ -50,7 +61,7 @@ const TableComp = ({ countryData }) => {
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-          {rows.map((row) => {
+          {page.map((row) => {
             prepareRow(row);
             return (
               <tr {...row.getRowProps()}>
@@ -62,6 +73,17 @@ const TableComp = ({ countryData }) => {
           })}
         </tbody>
       </table>
+      <div className="pageOptions">
+        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+          Previous
+        </button>
+        <span>
+          Page <strong> {pageIndex + 1}</strong> of {pageOptions.length}{" "}
+        </span>
+        <button onClick={() => nextPage()} disabled={!canNextPage}>
+          Next
+        </button>
+      </div>
     </>
   );
 };
