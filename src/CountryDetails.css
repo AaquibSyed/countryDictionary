@@ -1,0 +1,42 @@
+.country {
+  margin-bottom: 2px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  background: url(./map.jpg) rgba(102, 226, 187, 0.5);
+  background-position: center;
+  background-size: contain;
+  background-blend-mode: lighten;
+}
+
+.country__container {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: rgba(128, 128, 128, 0.158);
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 10%;
+  box-shadow: 0.5rem 0.5rem 1rem 0.1rem rgba(0, 0, 0, 0.7);
+}
+
+.country__flag > img:hover {
+  transform: scale(1.5);
+  cursor: pointer;
+}
+
+.country__flag > img {
+  width: 5rem;
+  height: 5rem;
+}
+
+.country__moreDetail > button {
+  background-color: gold;
+  font-weight: bold;
+  border-radius: 10%;
+}
+
+.country__moreDetail > button:hover {
+  cursor: pointer;
+}
