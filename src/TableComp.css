@@ -28,3 +28,16 @@ table th {
   position: sticky;
   top: 1.8rem;
 }
+
+.pageOptions {
+  background-color: #4caf50;
+  margin-top: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.3rem;
+}
+
+.pageOptions button {
+  font-weight: bolder;
+}
