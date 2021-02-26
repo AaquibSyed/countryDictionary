@@ -2,13 +2,13 @@ table {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
-  overflow-x: scroll;
+  height: 100%;
 }
 
 table td,
 table th {
   border: 1px solid #ddd;
-  padding: 8px;
+  padding: 1rem;
 }
 
 table tr:nth-child(even) {
@@ -40,4 +40,12 @@ table th {
 
 .pageOptions button {
   font-weight: bolder;
+}
+.filter__column {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.filter__column input {
+  max-width: auto;
 }

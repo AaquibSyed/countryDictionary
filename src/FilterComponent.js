@@ -13,4 +13,17 @@ function FilterComponent({ filter, setFilter }) {
   );
 }
 
-export default FilterComponent;
+function ColumnFilterComponent({ column }) {
+  const { filterValue, setFilter } = column;
+  return (
+    <span className="filter__column">
+      {" "}
+      <input
+        type="text"
+        value={filterValue}
+        onChange={(e) => setFilter(e.target.value)}
+      />
+    </span>
+  );
+}
+export { FilterComponent, ColumnFilterComponent };

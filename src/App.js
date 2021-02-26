@@ -44,15 +44,16 @@ function App() {
       <Router>
         <div className="toolbar">
           <Link to="/">Grid </Link>
-
           <Link to="/table">Table </Link>
         </div>
-        <Route path="/" exact>
-          <CountryDetails key={uuid()} countryData={countryData} />
-        </Route>
-        <Route path="/table" exact>
-          <TableComp countryData={countryData} />
-        </Route>
+        <div className="app__content">
+          <Route path="/" exact>
+            <CountryDetails key={uuid()} countryData={countryData} />
+          </Route>
+          <Route path="/table" exact>
+            <TableComp countryData={countryData} />
+          </Route>
+        </div>
       </Router>
     </div>
   );

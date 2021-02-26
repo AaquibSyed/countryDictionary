@@ -4,10 +4,11 @@ import {
   useSortBy,
   useGlobalFilter,
   usePagination,
+  useFilters,
 } from "react-table";
 import { COLUMNS } from "./utils";
 import "./TableComp.css";
-import FilterComponent from "./FilterComponent";
+import { FilterComponent } from "./FilterComponent";
 
 const TableComp = ({ countryData }) => {
   const columns = useMemo(() => COLUMNS, []);
@@ -18,6 +19,7 @@ const TableComp = ({ countryData }) => {
       columns: columns,
       data: data,
     },
+    useFilters,
     useGlobalFilter,
     useSortBy,
     usePagination
@@ -55,6 +57,10 @@ const TableComp = ({ countryData }) => {
                         : " 🡹 "
                       : ""}
                   </span>
+                  <div className="column__filter">
+                    {" "}
+                    {header.canFilter ? header.render("Filter") : null}
+                  </div>
                 </th>
               ))}
             </tr>
