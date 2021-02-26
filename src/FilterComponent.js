@@ -20,7 +20,7 @@ function ColumnFilterComponent({ column }) {
       {" "}
       <input
         type="text"
-        value={filterValue}
+        value={filterValue || ""}
         onChange={(e) => setFilter(e.target.value)}
       />
     </span>

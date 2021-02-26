@@ -15,6 +15,7 @@ export const COLUMNS = [
     Header: "Population",
     accessor: "population",
     Filter: ColumnFilterComponent,
+    disableFilters: true,
   },
 
   {

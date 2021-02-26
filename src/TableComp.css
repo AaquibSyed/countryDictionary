@@ -30,7 +30,8 @@ table th {
 }
 
 .pageOptions {
-  background-color: #4caf50;
+  width: 100%;
+  background-color: hsl(122, 39%, 49%);
   margin-top: 0.2rem;
   display: flex;
   align-items: center;
