@@ -8,16 +8,22 @@ import {
 } from "react-table";
 import { COLUMNS } from "./utils";
 import "./TableComp.css";
-import { FilterComponent } from "./FilterComponent";
+import { ColumnFilterComponent, FilterComponent } from "./FilterComponent";
 
 const TableComp = ({ countryData }) => {
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => countryData, []);
+  const defaultColumn = useMemo(() => {
+    return {
+      Filter: ColumnFilterComponent,
+    };
+  }, []);
 
   const tableInstance = useTable(
     {
       columns: columns,
       data: data,
+      defaultColumn,
     },
     useFilters,
     useGlobalFilter,
