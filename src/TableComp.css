@@ -35,8 +35,10 @@ table th {
   margin-top: 0.2rem;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   padding: 0.3rem;
+  position: sticky;
+  bottom: 0;
 }
 
 .pageOptions button {
@@ -49,4 +51,15 @@ table th {
 }
 .filter__column input {
   max-width: auto;
+}
+
+.filter {
+  max-height: fit-content;
+  margin-top: 0.2rem;
+  margin-left: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: sticky;
+  top: 30;
 }
