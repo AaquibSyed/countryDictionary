@@ -45,9 +45,10 @@ const TableComp = ({ countryData }) => {
     pageOptions,
     state,
     setGlobalFilter,
+    setPageSize,
   } = tableInstance;
 
-  const { filter, pageIndex } = state;
+  const { filter, pageIndex, pageSize } = state;
   return (
     <>
       <FilterComponent filter={filter} setFilter={setGlobalFilter} />
@@ -103,21 +104,44 @@ const TableComp = ({ countryData }) => {
             }}
           />
         </span>
-        <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
-          {"<<"}
-        </button>
-        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-          Previous
-        </button>
+        <span>
+          <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+            {"<<"}
+          </button>
+          <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+            Previous
+          </button>
+        </span>
         <span>
           Page <strong> {pageIndex + 1}</strong> of {pageOptions.length}{" "}
         </span>
-        <button onClick={() => nextPage()} disabled={!canNextPage}>
-          Next
-        </button>
-        <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
-          {">>"}
-        </button>
+        <span>
+          <button onClick={() => nextPage()} disabled={!canNextPage}>
+            Next
+          </button>
+          <button
+            onClick={() => gotoPage(pageCount - 1)}
+            disabled={!canNextPage}
+          >
+            {">>"}
+          </button>
+        </span>
+        <span>
+          SHOW :
+          <select
+            name="pageSize"
+            value={pageSize}
+            onChange={(e) => {
+              setPageSize(e.target.value);
+            }}
+          >
+            {[10, 15, 25, 50].map((i) => (
+              <option value={i} key={i}>
+                {i}
+              </option>
+            ))}
+          </select>
+        </span>
       </div>
     </>
   );

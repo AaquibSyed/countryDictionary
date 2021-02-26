@@ -2,14 +2,16 @@ import React from "react";
 
 function FilterComponent({ filter, setFilter }) {
   return (
-    <span className="filter">
-      Search: {"  "}
-      <input
-        type="text"
-        value={filter}
-        onChange={(e) => setFilter(e.target.value)}
-      />
-    </span>
+    <div className="filter">
+      <span>
+        <b>Global Search:</b>{" "}
+        <input
+          type="text"
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+        />
+      </span>
+    </div>
   );
 }
 
