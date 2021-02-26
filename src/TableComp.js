@@ -36,7 +36,9 @@ const TableComp = ({ countryData }) => {
     headerGroups,
     page,
     prepareRow,
+    gotoPage,
     nextPage,
+    pageCount,
     previousPage,
     canNextPage,
     canPreviousPage,
@@ -86,6 +88,24 @@ const TableComp = ({ countryData }) => {
         </tbody>
       </table>
       <div className="pageOptions">
+        <span>
+          GOTO:{" "}
+          <input
+            type="number"
+            defaultValue={pageIndex + 1}
+            max={pageOptions.length}
+            onChange={(e) => {
+              const pageNumber = Number(e.target.value);
+              gotoPage(pageNumber - 1);
+            }}
+            style={{
+              width: "4rem",
+            }}
+          />
+        </span>
+        <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+          {"<<"}
+        </button>
         <button onClick={() => previousPage()} disabled={!canPreviousPage}>
           Previous
         </button>
@@ -94,6 +114,9 @@ const TableComp = ({ countryData }) => {
         </span>
         <button onClick={() => nextPage()} disabled={!canNextPage}>
           Next
+        </button>
+        <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
+          {">>"}
         </button>
       </div>
     </>
